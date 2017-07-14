@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 class electionType
@@ -22,6 +23,7 @@ public:
 	void arrayInput();
 	void calculateVotePercent();
 	void calculateRank();
+	void roundVotePercent();
 	void outputResults();
 };
 
@@ -41,6 +43,7 @@ int main()
 	currentElection.arrayInput();
 	currentElection.calculateVotePercent();
 	currentElection.calculateRank();
+	currentElection.roundVotePercent();
 	currentElection.outputResults();
 
 	system("pause");
@@ -70,7 +73,7 @@ void electionType::arrayInput()
 		unsorted[i] = true;
 	}
 
-	cout << endl << "	--Thank you! All cantidate information processed--" << endl << endl << endl;
+	cout << "	-Thank you! All cantidate information processed-" << endl << endl << endl;
 }
 
 void electionType::calculateVotePercent()
@@ -136,6 +139,17 @@ void electionType::calculateRank()
 	// {
 	//  	cout << cantidateName[i] << ": #" << rank[i] << endl;
 	// }
+}
+
+// this function rounds the vote percentages to 2 decimal places
+void electionType::roundVotePercent()
+{
+	for (int i = 0; i < totalCantidates; i++)
+	{
+		votePercent[i] *= 100;
+		votePercent[i] = round(votePercent[i]);
+		votePercent[i] /= 100;
+	}
 }
 
 void electionType::outputResults()
